@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.redigo.languagelearningapp.view.MainViewController"
+            xmlns:fx="http://javafx.com/fxml" prefWidth="600" prefHeight="400">
+
+    <center>
+        <TableView fx:id="phraseTable" prefHeight="300">
+            <columns>
+                <TableColumn text="Phrase" fx:id="colPhrase" />
+                <TableColumn text="Translation" fx:id="colTranslation" />
+                <TableColumn text="Category" fx:id="colCategory" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="center" style="-fx-padding: 10 15 10 15;">
+            <Label text="Filter by Mastery Level:" />
+            <Spinner fx:id="masterySpinner" />
+            <Button text="Add Phrase" onAction="#onAddPhrase" />
+            <Button text="Delete Selected" onAction="#onDeleteSelected" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
