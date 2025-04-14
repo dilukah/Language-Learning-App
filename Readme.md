@@ -17,3 +17,7 @@ More features will be added in future versions, including:
 - Search functionality: Enable searching for phrases based on keywords or categories.
 - Export/Import functionality: Allow users to export their phrases to a file or import them from external sources.
 - Language tests
+
+![App Screenshot 1](assets/images/2025-04-14-1.jpg)
+
+![App Screenshot 2](assets/images/2025-04-14-2.jpg)
