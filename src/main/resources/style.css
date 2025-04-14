@@ -1,0 +1,102 @@
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    -fx-base: #ffffff;
+}
+
+.table-view {
+    -fx-background-color: #f0f4f8;
+    -fx-border-color: #d1dbe5;
+    -fx-table-cell-border-color: #e0e0e0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #4a90e2;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35px;
+}
+
+.table-row-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 5px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fff0f6;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #f0f9ff;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #ffe5b4;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #ffc4ec;
+    -fx-text-fill: #000000;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to right, #ff6a00, #ee0979);
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.2, 0, 2);
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #8e2de2, #4a00e0);
+    -fx-cursor: hand;
+}
+
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #2196f3;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 2 4;
+    -fx-min-width: 60px;
+    -fx-pref-width: 60px;
+    -fx-max-width: 60px;
+}
+
+.spinner .text-field {
+    -fx-font-size: 13px;
+    -fx-text-fill: #333;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-alignment: center;
+}
+
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+    -fx-shape: "M0,0H10V10H0Z";
+    -fx-border-radius: 0;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #e0f7fa;
+    -fx-cursor: hand;
+}
+
+.spinner .increment-arrow {
+    -fx-background-color: #2196f3;
+}
+
+.spinner .decrement-arrow {
+    -fx-background-color: #f44336;
+}

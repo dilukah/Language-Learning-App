@@ -48,6 +48,7 @@ public class MainViewController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddPhraseDialog.fxml"));
             DialogPane dialogPane = loader.load();
+            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             AddPhraseDialogController controller = loader.getController();
 
             controller.setInitialMasteryLevel(lastUsedMasteryLevel);
@@ -66,12 +67,9 @@ public class MainViewController {
 
                     if (!phrase.isEmpty()) {
                         Phrase newPhrase = new Phrase(phrase, translation, category, masteryLevel);
-
                         // Save to DB
                         viewModel.addPhrase(newPhrase);
-                        
                         filterPhrasesByMastery(masterySpinner.getValue()); // Reapply filter
-
                         // Save mastery level for next use
                         lastUsedMasteryLevel = masteryLevel;
                     }
