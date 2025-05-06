@@ -48,4 +48,12 @@ public class AddPhraseDialogController {
         return categoryField.getText();
     }
 
+    // Method to set initial values for editing
+    public void setInitialValues(String phrase, String translation, String category, int masteryLevel) {
+        phraseField.setText(phrase);
+        translationField.setText(translation);
+        categoryField.setText(category);
+        masterySpinner.getValueFactory().setValue(masteryLevel);
+    }
+
 }

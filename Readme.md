@@ -18,6 +18,6 @@ More features will be added in future versions, including:
 - Export/Import functionality: Allow users to export their phrases to a file or import them from external sources.
 - Language tests
 
-![App Screenshot 1](assets/images/2025-04-14-1.jpg)
+![App Screenshot 1](assets/images/2025-05-06-1.jpg)
 
-![App Screenshot 2](assets/images/2025-04-14-2.jpg)
+![App Screenshot 2](assets/images/2025-05-06-2.jpg)

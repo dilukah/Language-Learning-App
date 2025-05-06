@@ -27,4 +27,8 @@ public class PhraseViewModel {
         phraseManager.deletePhrase(phrase.getId());
         phrases.remove(phrase); // Update observable list
     }
+
+    public void updatePhrase(Phrase phrase) {
+        phraseManager.updatePhrase(phrase);
+    }
 }

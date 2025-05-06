@@ -82,4 +82,22 @@ public class PhraseManager {
             e.printStackTrace();
         }
     }
+
+    public void updatePhrase(Phrase phrase) {
+        String sql = "UPDATE phrases SET phrase = ?, translation = ?, category = ?, masteryLevel = ? WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, phrase.getPhrase());
+            pstmt.setString(2, phrase.getTranslation());
+            pstmt.setString(3, phrase.getCategory());
+            pstmt.setInt(4, phrase.getMasteryLevel());
+            pstmt.setInt(5, phrase.getId()); // Assuming Phrase has an 'id' field
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

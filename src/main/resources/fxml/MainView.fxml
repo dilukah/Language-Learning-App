@@ -21,6 +21,7 @@
             <Label text="Filter by Mastery Level:" />
             <Spinner fx:id="masterySpinner" />
             <Button text="Add Phrase" onAction="#onAddPhrase" />
+            <Button fx:id="editPhraseButton" text="Edit Phrase" onAction="#onEditPhrase" />
             <Button text="Delete Selected" onAction="#onDeleteSelected" />
         </HBox>
     </bottom>

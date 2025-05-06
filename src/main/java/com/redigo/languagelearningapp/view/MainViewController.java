@@ -82,6 +82,53 @@ public class MainViewController {
     }
 
     @FXML
+    public void onEditPhrase() {
+        // Get the selected phrase from the table
+        Phrase selected = phraseTable.getSelectionModel().getSelectedItem();
+
+        // If no phrase is selected, show a warning message
+        if (selected == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "No phrase selected to edit.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        // Show the dialog for editing the phrase
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddPhraseDialog.fxml"));
+            DialogPane dialogPane = loader.load();
+            AddPhraseDialogController controller = loader.getController();
+
+            // Pre-fill fields with selected phrase's data
+            controller.setInitialValues(selected.getPhrase(), selected.getTranslation(), selected.getCategory(), selected.getMasteryLevel());
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setTitle("Edit Phrase");
+            dialog.setDialogPane(dialogPane);
+            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            dialog.showAndWait().ifPresent(result -> {
+                if (result == ButtonType.OK) {
+                    // Get updated values from the dialog
+                    selected.setPhrase(controller.getPhrase());
+                    selected.setTranslation(controller.getTranslation());
+                    selected.setCategory(controller.getCategory());
+                    selected.setMasteryLevel(controller.getMasteryLevel());
+
+                    // Save updated values to the database
+                    viewModel.updatePhrase(selected);
+
+                    // Refresh the table to reflect the changes
+                    phraseTable.refresh();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     public void onDeleteSelected() {
         Phrase selected = phraseTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
