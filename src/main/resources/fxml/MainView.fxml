@@ -12,6 +12,7 @@
                 <TableColumn text="Phrase" fx:id="colPhrase" />
                 <TableColumn text="Translation" fx:id="colTranslation" />
                 <TableColumn text="Category" fx:id="colCategory" />
+                <TableColumn text="Structure" fx:id="colStructure" />
             </columns>
         </TableView>
     </center>

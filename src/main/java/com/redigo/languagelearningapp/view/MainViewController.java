@@ -13,6 +13,7 @@ public class MainViewController {
     @FXML private TableColumn<Phrase, String> colPhrase;
     @FXML private TableColumn<Phrase, String> colTranslation;
     @FXML private TableColumn<Phrase, String> colCategory;
+    @FXML private TableColumn<Phrase, String> colStructure;
 
     @FXML private Spinner<Integer> masterySpinner;
 
@@ -24,6 +25,7 @@ public class MainViewController {
         colPhrase.setCellValueFactory(new PropertyValueFactory<>("phrase"));
         colTranslation.setCellValueFactory(new PropertyValueFactory<>("translation"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colStructure.setCellValueFactory(new PropertyValueFactory<>("structure"));
 
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0); // min=0, max=10, default=0
         masterySpinner.setValueFactory(valueFactory);
@@ -64,9 +66,10 @@ public class MainViewController {
                     String translation = controller.getTranslation();
                     String category = controller.getCategory();
                     int masteryLevel = controller.getMasteryLevel();
+                    String structure = controller.getStructure();
 
                     if (!phrase.isEmpty()) {
-                        Phrase newPhrase = new Phrase(phrase, translation, category, masteryLevel);
+                        Phrase newPhrase = new Phrase(phrase, translation, category, masteryLevel, structure);
                         // Save to DB
                         viewModel.addPhrase(newPhrase);
                         filterPhrasesByMastery(masterySpinner.getValue()); // Reapply filter
@@ -100,7 +103,7 @@ public class MainViewController {
             AddPhraseDialogController controller = loader.getController();
 
             // Pre-fill fields with selected phrase's data
-            controller.setInitialValues(selected.getPhrase(), selected.getTranslation(), selected.getCategory(), selected.getMasteryLevel());
+            controller.setInitialValues(selected.getPhrase(), selected.getTranslation(), selected.getCategory(), selected.getMasteryLevel(), selected.getStructure());
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Edit Phrase");
@@ -114,6 +117,7 @@ public class MainViewController {
                     selected.setTranslation(controller.getTranslation());
                     selected.setCategory(controller.getCategory());
                     selected.setMasteryLevel(controller.getMasteryLevel());
+                    selected.setStructure(controller.getStructure());
 
                     // Save updated values to the database
                     viewModel.updatePhrase(selected);

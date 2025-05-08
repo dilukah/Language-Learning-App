@@ -6,20 +6,23 @@ public class Phrase {
     private String translation;
     private String category;
     private int masteryLevel;
+    private String structure;
 
-    public Phrase(String phrase, String translation, String category, int masteryLevel) {
+    public Phrase(String phrase, String translation, String category, int masteryLevel, String structure) {
         this.phrase = phrase;
         this.translation = translation;
         this.category = category;
         this.masteryLevel = masteryLevel;
+        this.structure = structure;
     }
 
-    public Phrase(int id, String phrase, String translation, String category, int masteryLevel) {
+    public Phrase(int id, String phrase, String translation, String category, int masteryLevel, String structure) {
         this.id = id;
         this.phrase = phrase;
         this.translation = translation;
         this.category = category;
         this.masteryLevel = masteryLevel;
+        this.structure = structure;
     }
 
     // Getters and Setters
@@ -37,6 +40,9 @@ public class Phrase {
 
     public int getMasteryLevel() { return masteryLevel; }
     public void setMasteryLevel(int masteryLevel) { this.masteryLevel = masteryLevel; }
+
+    public String getStructure() { return structure; }
+    public void setStructure(String structure) { this.structure = structure; }
 
 
     @Override

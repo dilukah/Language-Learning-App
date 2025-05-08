@@ -19,6 +19,8 @@ public class AddPhraseDialogController {
     @FXML
     private Spinner<Integer> masterySpinner;
 
+    @FXML private TextField structureField;
+
     @FXML
     public void initialize() {
         //initialize with a default value, but it will be overwritten by the setter
@@ -48,12 +50,17 @@ public class AddPhraseDialogController {
         return categoryField.getText();
     }
 
+    public String getStructure() {
+        return structureField.getText();
+    }
+
     // Method to set initial values for editing
-    public void setInitialValues(String phrase, String translation, String category, int masteryLevel) {
+    public void setInitialValues(String phrase, String translation, String category, int masteryLevel, String structure) {
         phraseField.setText(phrase);
         translationField.setText(translation);
         categoryField.setText(category);
         masterySpinner.getValueFactory().setValue(masteryLevel);
+        structureField.setText(structure);
     }
 
 }

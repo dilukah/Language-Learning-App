@@ -18,7 +18,8 @@ public class PhraseManager {
                 phrase TEXT NOT NULL,
                 translation TEXT NOT NULL,
                 category TEXT,
-                masteryLevel INTEGER DEFAULT 0
+                masteryLevel INTEGER DEFAULT 0,
+                structure TEXT
             );
         """;
 
@@ -31,7 +32,7 @@ public class PhraseManager {
     }
 
     public void addPhrase(Phrase phrase) {
-        String sql = "INSERT INTO phrases (phrase, translation, category, masteryLevel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO phrases (phrase, translation, category, masteryLevel, structure) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -39,6 +40,7 @@ public class PhraseManager {
             pstmt.setString(2, phrase.getTranslation());
             pstmt.setString(3, phrase.getCategory());
             pstmt.setInt(4, phrase.getMasteryLevel());
+            pstmt.setString(5, phrase.getStructure());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,7 +61,8 @@ public class PhraseManager {
                         rs.getString("phrase"),
                         rs.getString("translation"),
                         rs.getString("category"),
-                        rs.getInt("masteryLevel")
+                        rs.getInt("masteryLevel"),
+                        rs.getString("structure")
                 );
                 list.add(phrase);
             }
@@ -84,7 +87,7 @@ public class PhraseManager {
     }
 
     public void updatePhrase(Phrase phrase) {
-        String sql = "UPDATE phrases SET phrase = ?, translation = ?, category = ?, masteryLevel = ? WHERE id = ?";
+        String sql = "UPDATE phrases SET phrase = ?, translation = ?, category = ?, masteryLevel = ? , structure = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -93,7 +96,8 @@ public class PhraseManager {
             pstmt.setString(2, phrase.getTranslation());
             pstmt.setString(3, phrase.getCategory());
             pstmt.setInt(4, phrase.getMasteryLevel());
-            pstmt.setInt(5, phrase.getId()); // Assuming Phrase has an 'id' field
+            pstmt.setString(5, phrase.getStructure());
+            pstmt.setInt(6, phrase.getId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
