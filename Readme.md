@@ -4,7 +4,8 @@ A desktop JavaFX application designed to help language learners manage, categori
 
 ## Features
 
-- Add and delete phrases
+- Add, edit and delete phrases
+- Search phrases based on keywords
 - Assign categories and mastery levels to each phrase
 - Filter phrases by mastery level using an interactive spinner
 - Modular architecture with MVVM pattern
@@ -14,8 +15,7 @@ A desktop JavaFX application designed to help language learners manage, categori
 
 More features will be added in future versions, including:
 
-- Search functionality: Enable searching for phrases based on keywords or categories.
 - Export/Import functionality: Allow users to export their phrases to a file or import them from external sources.
 - Language tests
 
-![App Screenshot 1](assets/images/2025-05-08-1.jpg)
+![App Screenshot 1](assets/images/2025-05-09.jpg)

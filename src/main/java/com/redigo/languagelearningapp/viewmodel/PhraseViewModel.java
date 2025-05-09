@@ -31,4 +31,8 @@ public class PhraseViewModel {
     public void updatePhrase(Phrase phrase) {
         phraseManager.updatePhrase(phrase);
     }
+
+    public ObservableList<Phrase> searchPhrases(String keyword) {
+        return FXCollections.observableArrayList(phraseManager.searchPhrases(keyword));
+    }
 }

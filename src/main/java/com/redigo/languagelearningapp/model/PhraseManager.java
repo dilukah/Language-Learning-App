@@ -104,4 +104,33 @@ public class PhraseManager {
             e.printStackTrace();
         }
     }
+
+    public List<Phrase> searchPhrases(String keyword) {
+        List<Phrase> results = new ArrayList<>();
+        String sql = "SELECT * FROM phrases WHERE phrase LIKE ? OR translation LIKE ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            String pattern = "%" + keyword + "%";
+            pstmt.setString(1, pattern);
+            pstmt.setString(2, pattern);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Phrase phrase = new Phrase(
+                        rs.getInt("id"),
+                        rs.getString("phrase"),
+                        rs.getString("translation"),
+                        rs.getString("category"),
+                        rs.getInt("masteryLevel"),
+                        rs.getString("structure")
+                );
+                results.add(phrase);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return results;
+    }
 }

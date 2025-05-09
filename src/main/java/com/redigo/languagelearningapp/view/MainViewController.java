@@ -2,10 +2,16 @@ package com.redigo.languagelearningapp.view;
 
 import com.redigo.languagelearningapp.model.Phrase;
 import com.redigo.languagelearningapp.viewmodel.PhraseViewModel;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXMLLoader;
+import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+
 import java.io.IOException;
 
 public class MainViewController {
@@ -17,11 +23,17 @@ public class MainViewController {
 
     @FXML private Spinner<Integer> masterySpinner;
 
+    @FXML private TextField searchField;
+    @FXML private FontIcon searchIcon;
+
+    private PauseTransition pause;
+
     private final PhraseViewModel viewModel = new PhraseViewModel();
     private int lastUsedMasteryLevel = 0;
 
     @FXML
     public void initialize() {
+
         colPhrase.setCellValueFactory(new PropertyValueFactory<>("phrase"));
         colTranslation.setCellValueFactory(new PropertyValueFactory<>("translation"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -39,6 +51,24 @@ public class MainViewController {
 
         // Initial filter
         filterPhrasesByMastery(masterySpinner.getValue());
+
+        searchField.setOnAction(event -> onSearch());
+        searchField.setTooltip(new Tooltip("Press Enter to search"));
+
+        pause = new PauseTransition(Duration.millis(300)); // delay of 300ms
+
+        searchField.textProperty().addListener((obs, oldText, newText) -> {
+            pause.setOnFinished(event -> performSearch(newText.trim()));
+            pause.playFromStart();
+        });
+
+        // Action to trigger search when user clicks the icon
+        searchIcon.setOnMouseClicked(event -> {
+            onSearch();
+        });
+
+        // Set focus to the TableView after initialization as a quick fix to keep displaying "Search phrases" field text after initialization.
+        Platform.runLater(() -> phraseTable.requestFocus());
     }
 
     private void filterPhrasesByMastery(int level) {
@@ -137,6 +167,19 @@ public class MainViewController {
         Phrase selected = phraseTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             viewModel.deletePhrase(selected);
+        }
+    }
+
+    @FXML
+    public void onSearch() {
+        performSearch(searchField.getText().trim());
+    }
+
+    private void performSearch(String keyword) {
+        if (keyword.isEmpty()) {
+            phraseTable.setItems(viewModel.getPhrases());
+        } else {
+            phraseTable.setItems(viewModel.searchPhrases(keyword));
         }
     }
 
