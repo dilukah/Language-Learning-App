@@ -38,6 +38,14 @@ public class AddPhraseDialogController {
         }
     }
 
+    public void setInitialCategory(String category) {
+        categoryField.setText(category);
+    }
+
+    public void setInitialStructure(String structure) {
+        structureField.setText(structure);
+    }
+
     public String getPhrase() {
         return phraseField.getText();
     }

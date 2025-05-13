@@ -4,21 +4,21 @@
 }
 
 .table-view {
-    -fx-background-color: #f0f4f8;
-    -fx-border-color: #d1dbe5;
-    -fx-table-cell-border-color: #e0e0e0;
+    -fx-background-color: #ffffff; /* Clean white background for the table */
+    -fx-border-color: #80deea; /* Light cyan-blue border */
+    -fx-table-cell-border-color: #e0e0e0; /* Soft borders for cells */
     -fx-font-size: 14px;
-    -fx-text-fill: #333;
+    -fx-text-fill: #333333; /* Dark text for better readability */
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #4a90e2;
+    -fx-background-color: #0097a7; /* Deep cyan-blue header background */
 }
 
 .table-view .column-header,
 .table-view .filler {
     -fx-background-color: transparent;
-    -fx-size: 35px;
+    -fx-size: 35px; /* Fixed size for the filler column */
 }
 
 .table-row-cell {
@@ -27,20 +27,20 @@
 }
 
 .table-row-cell:odd {
-    -fx-background-color: #fff0f6;
+    -fx-background-color: #e0f7fa; /* Light cyan-blue for odd rows */
 }
 
 .table-row-cell:even {
-    -fx-background-color: #f0f9ff;
+    -fx-background-color: #b2ebf2; /* Slightly darker cyan-blue for even rows */
 }
 
 .table-row-cell:hover {
-    -fx-background-color: #ffe5b4;
+    -fx-background-color: #4dd0e1; /* Lighter cyan-blue shade for hover */
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #ffc4ec;
-    -fx-text-fill: #000000;
+    -fx-background-color: #00838f; /* Dark cyan-blue for selected row */
+    -fx-text-fill: white; /* White text on selected row */
 }
 
 .button {

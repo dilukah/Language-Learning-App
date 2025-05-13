@@ -30,6 +30,8 @@ public class MainViewController {
 
     private final PhraseViewModel viewModel = new PhraseViewModel();
     private int lastUsedMasteryLevel = 0;
+    private String lastUsedStructure ="";
+    private String lastUsedCategory ="";
 
     @FXML
     public void initialize() {
@@ -83,7 +85,10 @@ public class MainViewController {
             dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             AddPhraseDialogController controller = loader.getController();
 
+            // Pre-fill fields with previous phrase's data
             controller.setInitialMasteryLevel(lastUsedMasteryLevel);
+            controller.setInitialCategory(lastUsedCategory);
+            controller.setInitialStructure(lastUsedStructure);
 
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setTitle("Add New Phrase");
@@ -103,8 +108,10 @@ public class MainViewController {
                         // Save to DB
                         viewModel.addPhrase(newPhrase);
                         filterPhrasesByMastery(masterySpinner.getValue()); // Reapply filter
-                        // Save mastery level for next use
+                        // Save phrase data for next use
                         lastUsedMasteryLevel = masteryLevel;
+                        lastUsedCategory = category;
+                        lastUsedStructure = structure;
                     }
                 }
             });
